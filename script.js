@@ -1,31 +1,31 @@
 function handleYes() {
     createConfetti();
     setTimeout(() => {
-        alert('🎉 Yay! Let\'s have an amazing time together! 💗');
-    }, 500);
+        alert('That\'s amazing! I\'m so happy. Let\'s make it special. 💫');
+    }, 800);
 }
 
 function handleNo() {
     const noBtn = document.querySelector('.no-btn');
-    const randomX = Math.random() * 200 - 100;
-    const randomY = Math.random() * 200 - 100;
+    const randomX = (Math.random() - 0.5) * 300;
+    const randomY = (Math.random() - 0.5) * 300;
     noBtn.style.transform = `translate(${randomX}px, ${randomY}px)`;
 }
 
 function createConfetti() {
-    const heartsContainer = document.getElementById('hearts');
-    const hearts = ['💗', '💕', '💖', '✨', '⭐'];
+    const confettiContainer = document.getElementById('confetti');
+    const emojis = ['💗', '✨', '💫', '🌟'];
     
-    for (let i = 0; i < 50; i++) {
-        const heart = document.createElement('div');
-        heart.classList.add('heart');
-        heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
-        heart.style.left = Math.random() * 100 + '%';
-        heart.style.top = Math.random() * 100 + '%';
-        heartsContainer.appendChild(heart);
+    for (let i = 0; i < 40; i++) {
+        const particle = document.createElement('div');
+        particle.classList.add('particle');
+        particle.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+        particle.style.left = Math.random() * 100 + '%';
+        particle.style.top = '-50px';
+        confettiContainer.appendChild(particle);
         
         setTimeout(() => {
-            heart.remove();
+            particle.remove();
         }, 3000);
     }
 }
