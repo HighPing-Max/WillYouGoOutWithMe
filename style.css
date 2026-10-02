@@ -6,24 +6,62 @@
 
 body {
     font-family: 'Arial', sans-serif;
-    background: linear-gradient(135deg, #ffd6e8 0%, #c084fc 100%);
+    background: linear-gradient(135deg, #ff99cc 0%, #ff66b2 25%, #cc99ff 50%, #9966ff 75%, #6633ff 100%);
     min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
     overflow: hidden;
+    position: relative;
+}
+
+/* Animated stars background */
+.stars {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.stars::before,
+.stars::after {
+    content: '✨ ⭐ ✨ ⭐ ✨ ⭐ ✨ ⭐';
+    position: absolute;
+    font-size: 30px;
+    animation: twinkle 3s infinite;
+    opacity: 0.6;
+}
+
+.stars::before {
+    top: 10%;
+    left: 5%;
+    animation-delay: 0s;
+}
+
+.stars::after {
+    top: 80%;
+    right: 5%;
+    animation-delay: 1.5s;
+}
+
+@keyframes twinkle {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 1; }
 }
 
 .container {
     width: 100%;
     height: 100vh;
     position: relative;
+    z-index: 5;
 }
 
 .content {
     text-align: center;
     position: relative;
-    z-index: 10;
     padding: 40px 20px;
     height: 100%;
     display: flex;
@@ -32,24 +70,48 @@ body {
     align-items: center;
 }
 
-.kitten {
-    font-size: 120px;
-    margin-bottom: 30px;
-    animation: bounce 2s infinite;
+.kitten-box {
+    width: 200px;
+    height: 200px;
+    background: linear-gradient(135deg, rgba(255, 192, 203, 0.8), rgba(255, 105, 180, 0.8));
+    border: 8px solid #ff1493;
+    border-radius: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 40px;
+    box-shadow: 0 0 40px rgba(255, 20, 147, 0.6), inset 0 0 20px rgba(255, 255, 255, 0.3);
+    animation: glow 2s ease-in-out infinite;
+    padding: 10px;
 }
 
-@keyframes bounce {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-20px); }
+@keyframes glow {
+    0%, 100% { 
+        box-shadow: 0 0 40px rgba(255, 20, 147, 0.6), inset 0 0 20px rgba(255, 255, 255, 0.3);
+        transform: scale(1);
+    }
+    50% { 
+        box-shadow: 0 0 60px rgba(255, 20, 147, 1), inset 0 0 30px rgba(255, 255, 255, 0.5);
+        transform: scale(1.05);
+    }
+}
+
+.kitten {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
 }
 
 .message {
     font-size: 48px;
     color: #fff;
     margin-bottom: 60px;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.4), 0 0 20px rgba(255, 105, 180, 0.6);
     font-weight: bold;
-    letter-spacing: 2px;
+    letter-spacing: 3px;
 }
 
 .buttons {
@@ -67,28 +129,38 @@ button {
     cursor: pointer;
     font-weight: bold;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    text-transform: uppercase;
+    letter-spacing: 2px;
 }
 
 .yes-btn {
     background: linear-gradient(135deg, #ff006e, #ff4081);
     color: white;
+    border: 3px solid #ff1493;
 }
 
 .yes-btn:hover {
-    transform: scale(1.1);
-    box-shadow: 0 6px 25px rgba(255, 0, 110, 0.4);
+    transform: scale(1.15);
+    box-shadow: 0 12px 40px rgba(255, 0, 110, 0.6);
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+}
+
+.yes-btn:active {
+    transform: scale(0.95);
 }
 
 .no-btn {
-    background: #fff;
+    background: rgba(255, 255, 255, 0.95);
     color: #ff006e;
     font-weight: bold;
+    border: 3px solid #ff1493;
 }
 
 .no-btn:hover {
-    transform: scale(0.9);
+    transform: scale(0.85);
     opacity: 0.7;
+    background: rgba(255, 255, 255, 0.7);
 }
 
 .hearts {
@@ -98,36 +170,45 @@ button {
     top: 0;
     left: 0;
     pointer-events: none;
+    z-index: 20;
 }
 
 .heart {
     position: absolute;
-    font-size: 30px;
+    font-size: 40px;
     animation: float-up 3s ease-in forwards;
+    filter: drop-shadow(0 0 10px rgba(255, 20, 147, 0.8));
 }
 
 @keyframes float-up {
     0% {
         opacity: 1;
-        transform: translateY(0) translateX(0) scale(1);
+        transform: translateY(0) translateX(0) scale(1) rotate(0deg);
     }
     100% {
         opacity: 0;
-        transform: translateY(-500px) translateX(50px) scale(0.5);
+        transform: translateY(-600px) translateX(100px) scale(0.3) rotate(360deg);
     }
 }
 
 @media (max-width: 600px) {
     .message {
         font-size: 32px;
+        margin-bottom: 40px;
     }
 
-    .kitten {
-        font-size: 80px;
+    .kitten-box {
+        width: 150px;
+        height: 150px;
+        margin-bottom: 30px;
     }
 
     button {
         padding: 15px 30px;
         font-size: 20px;
+    }
+
+    .buttons {
+        gap: 15px;
     }
 }
