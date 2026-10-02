@@ -3,27 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Will You Go Out With Me? 💗</title>
+    <title>Will You Go Out With Me?</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="stars"></div>
-    
     <div class="container">
         <div class="content">
-            <div class="kitten-box">
-                <img src="kitten.gif" alt="Cute Kitten" class="kitten">
-            </div>
-            
-            <h1 class="message">Will you go out with me?</h1>
-            
-            <div class="buttons">
-                <button class="yes-btn" onclick="handleYes()">YES ✨</button>
-                <button class="no-btn" onclick="handleNo()">No</button>
+            <div class="card">
+                <div class="image-container">
+                    <img src="kitten.gif" alt="Cute moment" class="image">
+                </div>
+                
+                <div class="text-section">
+                    <h1>Will you go out with me?</h1>
+                    <p>I'd really like to spend time with you.</p>
+                </div>
+                
+                <div class="buttons">
+                    <button class="yes-btn" onclick="handleYes()">Yes</button>
+                    <button class="no-btn" onclick="handleNo()">Not now</button>
+                </div>
             </div>
         </div>
         
-        <div class="hearts" id="hearts"></div>
+        <div class="confetti" id="confetti"></div>
     </div>
 
     <script src="script.js"></script>
